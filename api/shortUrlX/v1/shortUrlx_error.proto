@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "errors/errors.proto";
+
+option go_package = "github.com/bitstormhub/bitstorm/shortUrlX/api/shortUrlX/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.shortUrlX.v1";
+
+enum ShortUrlErrorReason {
+  // 设置缺省错误码
+  option (errors.default_code) = 500;
+
+  // 为某个枚举单独设置错误码
+  ShortUrl_NotFound = 0 [(errors.code) = 100];
+}

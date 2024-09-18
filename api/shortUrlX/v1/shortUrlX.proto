@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package api.shortUrlX.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/bitstormhub/bitstorm/shortUrlX/api/shortUrlX/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.shortUrlX.v1";
+
+service ShortUrlX {
+  rpc CreateShortUrl (CreateShortUrlRequest) returns (CreateShortUrlReply) {
+    option (google.api.http) = {
+      post: "/v1/shorten",
+      body: "*"
+    };
+  }
+
+  rpc GetLongUrl (GetLongUrlRequest) returns (GetLongUrlReply) {
+    option (google.api.http) = {
+      post: "/v1/:short_url",
+      body: "*"
+    };
+  }
+
+  rpc Ping (PingRequest) returns (PingReply) {
+    option (google.api.http) = {
+      get: "/v1/ping"
+    };
+  }
+
+}
+
+message CreateShortUrlRequest {
+  string long_url = 1;
+}
+
+message CreateShortUrlReply {
+  string short_url = 1;
+}
+
+message GetLongUrlRequest {
+  string short_url = 1;
+}
+
+message GetLongUrlReply {
+  string long_url = 1;
+}
+
+message PingRequest {
+
+}
+
+message PingReply {
+  int32 code = 1;
+  string message = 2;
+}
+

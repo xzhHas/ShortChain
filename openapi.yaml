@@ -1,0 +1,88 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: ShortUrlX API
+    version: 0.0.1
+paths:
+    /v1/:short_url:
+        post:
+            tags:
+                - ShortUrlX
+            operationId: ShortUrlX_GetLongUrl
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.shortUrlX.v1.GetLongUrlRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.shortUrlX.v1.GetLongUrlReply'
+    /v1/ping:
+        get:
+            tags:
+                - ShortUrlX
+            operationId: ShortUrlX_Ping
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.shortUrlX.v1.PingReply'
+    /v1/shorten:
+        post:
+            tags:
+                - ShortUrlX
+            operationId: ShortUrlX_CreateShortUrl
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.shortUrlX.v1.CreateShortUrlRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.shortUrlX.v1.CreateShortUrlReply'
+components:
+    schemas:
+        api.shortUrlX.v1.CreateShortUrlReply:
+            type: object
+            properties:
+                shortUrl:
+                    type: string
+        api.shortUrlX.v1.CreateShortUrlRequest:
+            type: object
+            properties:
+                longUrl:
+                    type: string
+        api.shortUrlX.v1.GetLongUrlReply:
+            type: object
+            properties:
+                longUrl:
+                    type: string
+        api.shortUrlX.v1.GetLongUrlRequest:
+            type: object
+            properties:
+                shortUrl:
+                    type: string
+        api.shortUrlX.v1.PingReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                message:
+                    type: string
+tags:
+    - name: ShortUrlX
