@@ -5,19 +5,21 @@ option go_package = "./;conf";
 
 import "google/protobuf/duration.proto";
 
+// 配置的顶级消息，包含服务器server（http和gRPC），数据库Data，微服务Micro，日志配置Log
 message Bootstrap {
   Server server = 1;
   Data data = 2;
   Micro micro = 3;
   Log log = 4;
-  int64 machine_id = 5;
+  int64 machine_id = 5; // 机器ID，用于唯一标识不同的服务器实例
 }
 
+// 包含了http和grpc的服务器配置
 message Server {
   message HTTP {
-    string network = 1;
-    string addr = 2;
-    google.protobuf.Duration timeout = 3;
+    string network = 1;// 网络类型
+    string addr = 2;// 地址
+    google.protobuf.Duration timeout = 3;// 超时时间
   }
   message GRPC {
     string network = 1;
@@ -28,6 +30,7 @@ message Server {
   GRPC grpc = 2;
 }
 
+// MySQL和Redis
 message Data {
   message Database {
     string   addr          = 1;
@@ -37,7 +40,7 @@ message Data {
     int32    max_idle_conn = 5;
     int32    max_open_conn = 6;
     int32    max_idle_time = 7;
-    int64 slow_threshold_millisecond = 8;
+    int64 slow_threshold_millisecond = 8;// 慢查询阈值
   }
   message Redis {
     string addr       = 1;
@@ -64,10 +67,10 @@ message Micro {
 }
 
 message Log {
-  bool console = 1;
-  int64 max_size = 2;
-  int64 max_backups = 3;
-  string level = 4;
-  string log_path = 5;
-  string filename = 6;
+  bool console = 1;//是否输出到控制台
+  int64 max_size = 2;//日志文件的最大大小
+  int64 max_backups = 3;//日志文件的最大备份数量
+  string level = 4;//日志级别
+  string log_path = 5;//日志存储路径
+  string filename = 6;//日志文件名
 }
