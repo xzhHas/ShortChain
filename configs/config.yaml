@@ -21,8 +21,8 @@ data:
 
   redis:
     addr: 127.0.0.1:6379
-    password: "123456"
-    db: 6
+    password: ""
+    db: 0
     pool_size: 20
     bloom_filter_size: 1000000 # 布隆过滤器大小
     error_rate: 0.01 # 布隆过滤器错误率
