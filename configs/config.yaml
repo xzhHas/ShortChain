@@ -10,17 +10,17 @@ machine_id: 1 # 机器ID，用于生成唯一ID
 
 data:
   database:
-    addr: 192.168.5.51:3306
+    addr: 127.0.0.1:3306
     user: root
-    password: "123456"
-    database: shorturlx
+    password: "xiwanli"
+    database: shortchain
     max_idle_conn : 100
     max_open_conn: 150
     max_idle_time: 30
     slow_threshold_millisecond: 10 # SQL执行超过10ms，就算慢sql
 
   redis:
-    addr: 192.168.5.52:6379
+    addr: 127.0.0.1:6379
     password: "123456"
     db: 6
     pool_size: 20
