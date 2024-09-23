@@ -11,9 +11,10 @@ var ProviderSet = wire.NewSet(NewShortUrlXService)
 
 type ShortUrlXService struct {
 	pb.UnimplementedShortUrlXServer
-	uc *biz.UrlMapUseCase
+	uc *biz.UrlMapUseCase // 依赖注入了biz的接口
 }
 
+// 已传参的形式，依赖注入
 func NewShortUrlXService(uc *biz.UrlMapUseCase) *ShortUrlXService {
 	return &ShortUrlXService{uc: uc}
 }
