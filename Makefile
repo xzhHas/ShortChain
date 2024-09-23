@@ -37,7 +37,7 @@ config:
 
 
 .PHONY: api
-# generate api proto,使用make api 可以给proto文件都生成pb.go文件
+# generate api proto
 api:
 	protoc --proto_path=./api \
 	       --proto_path=./third_party \
