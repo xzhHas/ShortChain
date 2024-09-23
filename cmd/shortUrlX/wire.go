@@ -11,6 +11,7 @@ import (
 	"github.com/BitofferHub/shortUrlX/internal/interfaces"
 	"github.com/BitofferHub/shortUrlX/internal/server"
 	"github.com/BitofferHub/shortUrlX/internal/service"
+	"github.com/go-kratos/kratos/v2"
 	"github.com/google/wire"
 )
 
