@@ -21,6 +21,7 @@ func MiddlewareTraceID() middleware.Middleware {
 	return func(handler middleware.Handler) middleware.Handler {
 		return func(ctx context.Context, req interface{}) (reply interface{}, err error) {
 			fmt.Printf("ctx %v\n", ctx)
+			// 元数据，获取上下文信息，令牌认真，ID追踪
 			if md, ok := metadata.FromServerContext(ctx); ok {
 				traceID := md.Get(fmt.Sprintf("x-md-global-%s", constant.TraceID))
 				ctx = context.WithValue(ctx, constant.TraceID, traceID)
@@ -50,7 +51,8 @@ func MiddlewareLog() middleware.Middleware {
 				operation = info.Operation()
 			}
 			log.InfoContextf(ctx,
-				"component:%s,operation:%s,args:%s,code:%d,reason:%s", kind,
+				"component:%s,operation:%s,args:%s,code:%d,reason:%s",
+				kind,
 				operation,
 				req,
 				code,

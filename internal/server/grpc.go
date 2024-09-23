@@ -18,6 +18,7 @@ func NewGRPCServer(c *conf.Server, s *service.ShortUrlXService) *grpc.Server {
 			MiddlewareLog(),
 		),
 	}
+	// 网络格式
 	if c.Grpc.Network != "" {
 		opts = append(opts, grpc.Network(c.Grpc.Network))
 	}

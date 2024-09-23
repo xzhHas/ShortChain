@@ -26,6 +26,7 @@ func NewHTTPServer(c *conf.Server, h *interfaces.Handler) *http.Server {
 		opts = append(opts, http.Timeout(c.Http.Timeout.AsDuration()))
 	}
 	srv := http.NewServer(opts...)
+	// 参数是handler接口，但是gin.Engine实现了ServerHttp接口 所以可以使用
 	srv.HandlePrefix("/", interfaces.NewRouter(h))
 	return srv
 }
