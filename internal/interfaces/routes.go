@@ -28,6 +28,10 @@ func NewRouter(h *Handler) *gin.Engine {
 			"message": "pong",
 		})
 	})
+	/*
+		v1版本
+		单纯依赖数据库获取自增ID，通过base62转换成短链
+	*/
 	v1 := project.Group("/v1")
 	{
 		// Get 传入短链，返回长链
@@ -36,6 +40,12 @@ func NewRouter(h *Handler) *gin.Engine {
 		// Post 创建长链对应短链（ps：我们做的是一一对应的，一个长链只对应一个短链）
 		v1.POST("/shorten", h.CreateShortUrlV1)
 	}
+	/*
+		v2版本
+		1.依赖于Redis，自增ID的性能
+		2.base62算法将获得的自增ID转换成短链
+		3.利用Redis布隆过滤器，拦截一部分访问DB的流量，可以做快速判断
+	*/
 	v2 := project.Group("/v2")
 	{
 		// Get 传入短链，返回长链
@@ -45,7 +55,12 @@ func NewRouter(h *Handler) *gin.Engine {
 		// Post 创建长链对应短链（ps：我们做的是一一对应的，一个长链只对应一个短链）
 		v2.POST("/shorten", h.CreateShortUrlV2)
 	}
-
+	/*
+		v3版本
+		1.雪花算法生成自增ID
+		2.base62算法
+		3.Redis缓存来加速查询长链和短链
+	*/
 	v3 := project.Group("/v3")
 	{
 		// Get 传入短链，返回长链
