@@ -65,6 +65,7 @@ func main() {
 		panic(err)
 	}
 
+	// 配置文件扫描
 	var bc conf.Bootstrap
 	if err := c.Scan(&bc); err != nil {
 		panic(err)
