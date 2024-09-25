@@ -28,6 +28,7 @@ func (h *Handler) RedirectToLongUrlV2(ctx *gin.Context) {
 		ctx.Status(http.StatusNotFound)
 		return
 	}
+
 	if reply.LongUrl == "" {
 		log.Infof("getLongUrl: 无效的短链 %s", fullUrl)
 		ctx.Status(http.StatusNotFound)
@@ -58,7 +59,5 @@ func (h *Handler) CreateShortUrlV2(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(200, pb.CreateShortUrlReply{
-		ShortUrl: fmt.Sprintf("http://%s/v2/%s", ctx.Request.Host, reply.ShortUrl)})
-
+	ctx.JSON(200, pb.CreateShortUrlReply{ShortUrl: fmt.Sprintf("http://%s/v2/%s", ctx.Request.Host, reply.ShortUrl)})
 }

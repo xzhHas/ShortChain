@@ -6,6 +6,7 @@ import (
 	"strconv"
 )
 
+// GenerateShortUrlV2 生成短链
 func (uc *UrlMapUseCase) GenerateShortUrlV2(ctx context.Context, longUrl string) (string, error) {
 	// 先查询数据库里面是否有这个长链
 	shortUrl, err := uc.repo.GetShortUrlFormDb(ctx, longUrl)
@@ -20,7 +21,6 @@ func (uc *UrlMapUseCase) GenerateShortUrlV2(ctx context.Context, longUrl string)
 
 	// 从缓存里面获取ID
 	idStr, err := uc.repo.GenerateIdFromCache(ctx)
-
 	id, _ := strconv.ParseInt(idStr, 10, 64)
 
 	// 利用base62算法，生成短链
@@ -41,7 +41,7 @@ func (uc *UrlMapUseCase) GenerateShortUrlV2(ctx context.Context, longUrl string)
 	return shortUrl, nil
 }
 
-// GetLongUrl 获取长链
+// GetLongUrlV2 获取长链
 func (uc *UrlMapUseCase) GetLongUrlV2(ctx context.Context, shortUrl string) (string, error) {
 	// 先从布隆过滤器中查询
 	exist, err := uc.repo.FindShortUrlFormBloomFilter(ctx, shortUrl)
