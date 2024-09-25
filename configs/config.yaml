@@ -20,11 +20,11 @@ data:
     slow_threshold_millisecond: 10 # SQL执行超过10ms，就算慢sql
 
   redis:
-    addr: 127.0.0.1:6379
+    addr: 59.110.34.61:6379
     password: ""
-    db: 0
+    db: 9
     pool_size: 20
-    bloom_filter_size: 1000000 # 布隆过滤器大小
+    bloom_filter_size: 100000 # 布隆过滤器大小
     error_rate: 0.01 # 布隆过滤器错误率
     read_timeout: 2s
     write_timeout: 2s
