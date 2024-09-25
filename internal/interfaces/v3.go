@@ -58,7 +58,5 @@ func (h *Handler) CreateShortUrlV3(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(200, pb.CreateShortUrlReply{
-		ShortUrl: fmt.Sprintf("http://%s/v3/%s", ctx.Request.Host, reply.ShortUrl)})
-
+	ctx.JSON(200, pb.CreateShortUrlReply{ShortUrl: fmt.Sprintf("http://%s/v3/%s", ctx.Request.Host, reply.ShortUrl)})
 }

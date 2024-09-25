@@ -22,13 +22,12 @@ func (uc *UrlMapUseCase) GenerateShortUrlV3(ctx context.Context, longUrl string)
 
 	// 如果有，顺便保存到缓存中
 	if shortUrl != "" {
-		uc.repo.SaveToCache(ctx, longUrl, shortUrl)
+		_ = uc.repo.SaveToCache(ctx, longUrl, shortUrl)
 		return shortUrl, nil
 	}
 
 	// 还是没找到, 那就利用雪花算法生成ID
 	id := snowflake.GenID()
-
 	// 利用base62算法，生成短链
 	shortUrl = generateShortUrl(id)
 
