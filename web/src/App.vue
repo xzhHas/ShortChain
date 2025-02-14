@@ -42,7 +42,7 @@ export default {
       }
       try {
         const response = await axios.post(
-          "http://s.renaigo.cn/api/shorten",
+          "http://s.golangcode.cn/api/shorten",
           { long_url: this.longUrl },
           {
             headers: {
